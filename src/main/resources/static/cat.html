@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Catalogue de produits</title>
+<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet"
+href="node_modules/bootstrap/dist/css/bootstrap-theme.min.css" />
+<link rel="stylesheet" href="css/style2.css" />
+</head>
+<body ng-app="catalogue" ng-controller="Catcontroller">
+<div class="container spacer">
+<form>
+<label>Catégories:</label> <select ng-model="selectedCategorie"
+ng-change="gotoURL()">
+<option ng-repeat="cat in categories" value="{{cat.idCategorie}}">
+{{cat.nomCategorie}}</option>
+</select>
+</form>
+</div>
+<div class="container">
+<table class="table table-striped table-hover spacer">
+<thead>
+<tr>
+<th>REF</th>
+<th>DES</th>
+<th>PRIX</th>
+<th>QTE</th>
+</tr>
+</thead>
+<tbody>
+<tr ng-repeat="p in produits.content">
+<td>{{p.reference}}</td>
+<td>{{p.designation}}</td>
+<td>{{p.prix}}</td>
+<td>{{p.quantite}}</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul ng-show="produits.totalPages>1" class="container nav nav-pills">
+<li class="clickable" ng-repeat="p in pages track by $index" ngclass="{active:$index==pageCourante}" >
+<a ng-click="gotoPage($index)">{{$index}}</a>
+</li>
+</ul>
+<script type="text/javascript" src="js/angular.min.js"></script>
+<script type="text/javascript" src="js/catal.js"></script>
+</body>
+</html>
